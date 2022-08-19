@@ -1,0 +1,10 @@
+.page404 {
+  display: flex;
+  margin: 5rem;
+  align-items: center;
+  justify-content: center;
+
+  &-msg {
+    @include font-heading(200);
+  }
+}

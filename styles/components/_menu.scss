@@ -1,0 +1,52 @@
+@import "../utils/fonts";
+
+.menu {
+  @include font-paragraph(200);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: $color-primary-100;
+  padding: 1rem;
+  color: $color-gray-100;
+  width: 100%;
+
+  &-box {
+    display: flex;
+    justify-content: flex-end;
+    // max-width: 160rem;
+    padding: 0 3rem;
+    width: 100%;
+  }
+
+  // Menu link
+
+  &__link,
+  &__link:visited {
+    cursor: pointer;
+    position: relative;
+    margin: 0 2rem;
+  }
+
+  &__link::before {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    right: 0;
+    width: 0;
+    height: 2px;
+    background-color: $color-gray-300;
+    transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  &__link:hover {
+    color: $color-gray-300;
+  }
+
+  &__link:hover::before {
+    left: 0;
+    right: auto;
+    width: 100%;
+  }
+}

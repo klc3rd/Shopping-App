@@ -1,0 +1,15 @@
+@import "./utils/colors";
+@import "./utils/fonts";
+@import "./utils/sizes";
+
+@import "./components/container";
+@import "./components/auth";
+@import "./components/icons";
+
+@import "./utils/body";
+
+// Pages
+@import "./pages/404";
+@import "./pages/index/index";
+@import "./pages/signup";
+@import "./pages/sendVerification";

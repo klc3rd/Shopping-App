@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Source+Sans+Pro:wght@300;400;600&display=swap");
+
+@mixin font-heading($size) {
+  font-family: "Playfair Display", serif;
+
+  @if $size == 100 {
+    font-size: 8.2rem;
+  } @else if $size == 150 {
+    font-size: 6.2rem;
+  } @else if $size == 200 {
+    font-size: 4.2rem;
+  } @else if $size == 300 {
+    font-size: 3.2rem;
+  } @else if $size == 400 {
+    font-size: 2.4rem;
+  } @else {
+    font-size: $size;
+  }
+}
+
+@mixin font-paragraph($size) {
+  font-family: "Source Sans Pro", sans-serif;
+
+  @if $size == 100 {
+    font-size: 2.4rem;
+  } @else if $size == 200 {
+    font-size: 2rem;
+  } @else if $size == 250 {
+    font-size: 1.8rem;
+  } @else if $size == 300 {
+    font-size: 1.6rem;
+  } @else {
+    font-size: $size;
+  }
+}
+
+.error {
+  @include font-paragraph(300);
+  color: $color-error;
+}

@@ -1,0 +1,17 @@
+.signup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10vh;
+
+  &-container {
+    width: 100%;
+    max-width: 60rem;
+    padding: 3rem 2rem;
+    box-shadow: 3px 3px 5px rgba($color-black-300, 0.1);
+
+    &-heading {
+      @include font-heading(400);
+    }
+  }
+}

@@ -1,0 +1,14 @@
+:root {
+  font-size: 62.5%;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  @include font-paragraph(100);
+  margin: 0;
+  padding: 0;
+}

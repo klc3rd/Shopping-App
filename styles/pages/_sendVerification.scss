@@ -1,0 +1,34 @@
+.sendVerification {
+  @include font-paragraph(200);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10rem;
+  color: $color-primary-300;
+
+  &-container {
+    @include font-paragraph(300);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &-btn {
+    @include font-paragraph(200);
+    color: $color-primary-200;
+    border: 0;
+    text-decoration: underline;
+    background: none;
+    cursor: pointer;
+
+    &:hover {
+      color: $color-secondary-300;
+    }
+
+    &:disabled {
+      color: $color-gray-200;
+    }
+  }
+}
