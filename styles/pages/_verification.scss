@@ -32,3 +32,21 @@
     }
   }
 }
+
+.verification {
+  @include font-paragraph(300);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10rem;
+
+  &-link {
+    color: $color-primary-300;
+    cursor: pointer;
+    text-decoration: underline;
+
+    &:hover {
+      color: $color-secondary-300;
+    }
+  }
+}
