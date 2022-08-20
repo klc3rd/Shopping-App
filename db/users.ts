@@ -4,7 +4,7 @@ import { IContext } from "graph";
 import { IUser } from "Users";
 import { v4 as uuid } from "uuid";
 
-import mailer from "./mailer";
+import mailer from "../utils/mailer";
 
 // create user function is separated from mutation for testing reasons
 export const createUser = async (

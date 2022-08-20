@@ -1,10 +1,13 @@
 import { useState, useRef, useEffect } from "react";
 import { gql, useMutation } from "@apollo/client";
+import { useRouter } from "next/router";
 import Input from "../form/input";
 import Tos from "../form/tos";
 import validator from "validator";
 
 const SignupForm: React.FC = () => {
+  const router = useRouter();
+
   let userCreateQuery = gql`
     mutation (
       $name: String!
@@ -94,24 +97,30 @@ const SignupForm: React.FC = () => {
 
     try {
       await addUser({ variables: { name, email, username, password } });
-    } catch (err: any) {
-      if (
-        err.message.includes(
-          "Unique constraint failed on the fields: (`username`)"
-        )
-      ) {
-        setUsernameError("Username in use");
-      } else if (
-        err.message.includes(
-          "Unique constraint failed on the fields: (`email`)"
-        )
-      ) {
-        setEmailError("Email in use");
-      } else {
-        setStandardError(err.message);
+    } catch (err) {
+      if (err instanceof Error) {
+        if (
+          err.message.includes(
+            "Unique constraint failed on the fields: (`username`)"
+          )
+        ) {
+          setUsernameError("Username in use");
+        } else if (
+          err.message.includes(
+            "Unique constraint failed on the fields: (`email`)"
+          )
+        ) {
+          setEmailError("Email in use");
+        } else {
+          setStandardError(err.message);
+        }
       }
       return;
     }
+
+    // Sets the email so the resend verification page knows who to send it to
+    localStorage.setItem("email", email);
+    router.replace("/verify/send");
   };
 
   // Runs code after userCreation graphql is ran and a
