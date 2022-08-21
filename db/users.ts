@@ -58,10 +58,12 @@ export const login = async (
   { prisma }: IContext
 ) => {
   // find user and grab hash
-  const user = await prisma.findUnique({ where: { email: email } });
+  const user = await prisma.user.findUnique({ where: { email: email } });
   const passwordHash = user.password;
 
-  if (!user || !bcrypt.compare(password, passwordHash)) {
+  const match = await bcrypt.compare(password, passwordHash);
+
+  if (!user || !match) {
     return {
       error: "Invalid login",
       user: null,
@@ -84,7 +86,7 @@ export const login = async (
 };
 
 export const getUserByEmail = async (email: string, { prisma }: IContext) => {
-  const user = await prisma.findUnique({ where: { email: email } });
+  const user = await prisma.user.findUnique({ where: { email: email } });
 
   if (!user) {
     return {

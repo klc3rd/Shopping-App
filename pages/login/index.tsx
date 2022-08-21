@@ -1,5 +1,5 @@
-import LoginForm from "../components/page/login/login-form";
-import TransitionContainer from "../components/page/transition";
+import LoginForm from "../../components/page/login/login-form";
+import TransitionContainer from "../../components/page/transition";
 
 const Login = () => {
   return (

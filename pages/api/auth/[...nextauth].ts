@@ -6,7 +6,8 @@ import { login, getUserByEmail } from "../../../db/users";
 
 const prisma = new PrismaClient();
 
-const authOptions: NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
+  secret: process.env.AUTH_SECRET,
   session: { strategy: "jwt" },
 
   callbacks: {

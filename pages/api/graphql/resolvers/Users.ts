@@ -1,6 +1,6 @@
 import { IContext } from "graph";
-import { createUser, login } from "../../../../db/users";
-import { IUser, ILogin } from "Users";
+import { createUser } from "../../../../db/users";
+import { IUser } from "Users";
 
 interface IReturnUser {
   error?: string;

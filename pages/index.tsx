@@ -1,9 +1,14 @@
-import type { NextPage } from "next";
 import { useQuery, gql } from "@apollo/client";
 import Hero from "../components/page/hero";
+import { Session } from "next-auth";
 import TransitionContainer from "../components/page/transition";
+import getServerSideProps from "../db/serverProps";
 
-const Home: NextPage = () => {
+interface IIndex {
+  session: Session;
+}
+
+const Home: React.FC<IIndex> = (props) => {
   const query = gql`
     {
       getHello
@@ -18,5 +23,7 @@ const Home: NextPage = () => {
     </TransitionContainer>
   );
 };
+
+export { getServerSideProps };
 
 export default Home;
