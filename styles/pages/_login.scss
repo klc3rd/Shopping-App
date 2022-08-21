@@ -1,0 +1,25 @@
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10vh 0 0 0;
+
+  &-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    margin: 0 10vw;
+    gap: 1rem;
+
+    @media (max-width: $screen-width-small) {
+      grid-template-columns: 1fr;
+    }
+
+    &-left {
+      border: 1px solid $color-primary-300;
+    }
+    &-right {
+      border: 1px solid $color-primary-300;
+    }
+  }
+}

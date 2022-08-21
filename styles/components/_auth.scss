@@ -66,6 +66,13 @@
     justify-content: space-between;
     margin: 2rem 0 0 0;
 
+    @media (max-width: $screen-width-small) {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
     &__btn {
       @include font-paragraph(200);
       cursor: pointer;
