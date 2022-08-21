@@ -105,6 +105,7 @@ export const getUserByEmail = async (email: string, { prisma }: IContext) => {
   };
 
   return {
+    error: null,
     user: returnUser,
   };
 };

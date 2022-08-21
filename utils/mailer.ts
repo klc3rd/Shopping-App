@@ -8,7 +8,7 @@ const mailer = async (email: string, verifyVal: string) => {
     port: port || 465,
     secure: process.env.SMTP_SECURED ? true : false,
     auth: {
-      user: process.env.SUPPORT_EMAIL,
+      user: process.env.SUPPORT_USER,
       pass: process.env.EMAIL_PASSWORD,
     },
   });
@@ -20,6 +20,8 @@ const mailer = async (email: string, verifyVal: string) => {
     text: `Visit ${process.env.URL}/verify/${verifyVal} to verify your account`,
     html: `<a href=\"${process.env.URL}/verify/${verifyVal}\">Click here</a> to verify your account`,
   });
+
+  return response;
 };
 
 export default mailer;
