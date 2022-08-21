@@ -1,7 +1,7 @@
 import validator from "validator";
 import bcrypt from "bcrypt";
 import { IContext } from "graph";
-import { IUser } from "Users";
+import { IUser, ILogin } from "Users";
 import { v4 as uuid } from "uuid";
 
 import mailer from "../utils/mailer";
@@ -51,4 +51,58 @@ export const createUser = async (
   };
 
   return { user: returnUser };
+};
+
+export const login = async (
+  { email, password }: ILogin,
+  { prisma }: IContext
+) => {
+  // find user and grab hash
+  const user = await prisma.findUnique({ where: { email: email } });
+  const passwordHash = user.password;
+
+  if (!user || !bcrypt.compare(password, passwordHash)) {
+    return {
+      error: "Invalid login",
+      user: null,
+    };
+  }
+
+  const returnUser = {
+    id: user.id,
+    name: user.name,
+    username: user.username,
+    email: user.email,
+    role: user.role,
+    verified: user.verified,
+  };
+
+  return {
+    error: null,
+    user: returnUser,
+  };
+};
+
+export const getUserByEmail = async (email: string, { prisma }: IContext) => {
+  const user = await prisma.findUnique({ where: { email: email } });
+
+  if (!user) {
+    return {
+      error: "Could not find user",
+      user: null,
+    };
+  }
+
+  const returnUser = {
+    id: user.id,
+    name: user.name,
+    username: user.username,
+    email: user.email,
+    role: user.role,
+    verified: user.verified,
+  };
+
+  return {
+    user: returnUser,
+  };
 };

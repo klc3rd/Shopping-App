@@ -5,4 +5,9 @@ declare module "Users" {
     email: string;
     password?: string;
   }
+
+  interface ILogin {
+    email: string;
+    password: string;
+  }
 }

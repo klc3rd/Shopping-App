@@ -15,6 +15,7 @@ export const typeDefs = gql`
   }
 
   type UserReturn {
+    error: String
     user: User
   }
 
@@ -25,5 +26,6 @@ export const typeDefs = gql`
     email: String!
     password: String
     verified: Boolean
+    role: String
   }
 `;

@@ -34,7 +34,7 @@ const SendVerification = () => {
         A verification email has been sent to your email.
         <div className="sendVerification-container">
           <Countdown
-            date={Date.now() + 5000}
+            date={Date.now() + 60000}
             intervalDelay={0}
             precision={1}
             renderer={({ seconds }) => {

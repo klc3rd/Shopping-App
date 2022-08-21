@@ -26,10 +26,6 @@
     &:hover {
       color: $color-secondary-300;
     }
-
-    &:disabled {
-      color: $color-gray-200;
-    }
   }
 }
 
@@ -41,7 +37,7 @@
   margin-top: 10rem;
 
   &-link {
-    color: $color-primary-300;
+    color: $color-primary-100;
     cursor: pointer;
     text-decoration: underline;
 

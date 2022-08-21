@@ -1,5 +1,5 @@
 import TransitionContainer from "../components/page/transition";
-import SignupForm from "../components/page/signup/form";
+import SignupForm from "../components/page/signup/signup-form";
 
 const SignUp = () => {
   return (
