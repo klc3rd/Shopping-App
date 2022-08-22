@@ -15,7 +15,8 @@ const prisma = new PrismaClient({
   },
 });
 
-// Disable mailer function so tests don't send unnecessary emails
+// Disable mailer function so tests don't send unnecessary emails or cause
+// error thrown due to environment variables not being implementedß
 vi.mock("../utils/mailer");
 
 const newUser = {

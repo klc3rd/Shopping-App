@@ -1,6 +1,7 @@
 import { NextApiResponse, NextApiRequest } from "next";
 import { validatePasswordResetValue } from "../../../db/users";
 import { PrismaClient } from "@prisma/client";
+import ChangePassword from "../../../components/page/login/change-password";
 
 interface IResetPasswordPage {
   valid: boolean;
@@ -9,7 +10,16 @@ interface IResetPasswordPage {
 const ResetPasswordPage: React.FC<IResetPasswordPage> = (props) => {
   const { valid } = props;
 
-  return <div></div>;
+  return (
+    <div>
+      {!valid && (
+        <div className="reset-invalid">
+          This link is either invalid or expired.
+        </div>
+      )}
+      {valid && <ChangePassword />}
+    </div>
+  );
 };
 
 export async function getServerSideProps(

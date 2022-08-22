@@ -4,7 +4,6 @@ const PasswordResetPage = () => {
   return (
     <div className="reset">
       <ResetForm />
-      <div className=""></div>
     </div>
   );
 };
