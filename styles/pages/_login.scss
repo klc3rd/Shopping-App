@@ -46,3 +46,25 @@
     }
   }
 }
+
+.reset {
+  display: flex;
+  justify-content: center;
+  margin: 10vh;
+
+  &-heading {
+    @include font-heading(400);
+  }
+
+  &-container {
+    width: 100%;
+    max-width: 50rem;
+  }
+
+  &-notification {
+    @include font-paragraph(200);
+    display: block;
+    margin-top: 2rem;
+    text-align: center;
+  }
+}

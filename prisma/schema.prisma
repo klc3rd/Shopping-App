@@ -19,5 +19,6 @@ model user {
   password  String
   verified  Boolean
   verifyVal String  @unique
+  resetVal  String  @unique
   role      String
 }

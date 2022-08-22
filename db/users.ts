@@ -38,6 +38,7 @@ export const createUser = async (
       password: passwordHash,
       verified: false,
       verifyVal,
+      resetVal: "",
       role: "user",
     },
   });
