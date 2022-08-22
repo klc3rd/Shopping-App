@@ -1,11 +1,14 @@
 import { useRef, useState } from "react";
-import loginText from "../../../utils/text/login-text";
+import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";
+import loginText from "../../../utils/text/login-text";
 import Link from "next/link";
 import Input from "../form/input";
 import validator from "validator";
 
 const LoginForm: React.FC = () => {
+  const router = useRouter();
+
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
@@ -36,9 +39,11 @@ const LoginForm: React.FC = () => {
     if (response) {
       if (response.status !== 200) {
         setPasswordError("Incorrect username or password");
+        return;
       }
 
-      // TOOD: Finish login process, check for validation
+      localStorage.setItem("redirect", "/");
+      router.replace("/login/verify");
     }
   };
 
@@ -63,7 +68,7 @@ const LoginForm: React.FC = () => {
             <span className="error">{passwordError}</span>
             <div className="auth-submit">
               <div>
-                <Link href="/password-reset">
+                <Link href="/login/reset">
                   <span className="login-reset-link">Forgot password</span>
                 </Link>
               </div>

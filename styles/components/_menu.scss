@@ -1,5 +1,14 @@
 @import "../utils/fonts";
 
+.welcome {
+  @include font-paragraph(300);
+  width: 100%;
+
+  @media (max-width: $screen-width-small) {
+    display: none;
+  }
+}
+
 .menu {
   @include font-paragraph(200);
 
@@ -15,12 +24,14 @@
   &-box {
     display: flex;
     justify-content: flex-end;
-    // max-width: 160rem;
     padding: 0 3rem;
     width: 100%;
   }
 
   // Menu link
+  &__active {
+    color: $color-tertiary-100;
+  }
 
   &__link,
   &__link:visited {

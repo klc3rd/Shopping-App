@@ -15,7 +15,7 @@ const Hero = () => {
           </span>
           <span className="hero-box__text hero-box__text-2">Make money.</span>
           <p />
-          <Link href="/list">
+          <Link href="/new">
             <span className="hero-box__link">List your item</span>
           </Link>
         </div>
