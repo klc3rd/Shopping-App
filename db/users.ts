@@ -110,3 +110,16 @@ export const getUserByEmail = async (email: string, { prisma }: IContext) => {
     user: returnUser,
   };
 };
+
+export const validatePasswordResetValue = async (
+  resetVal: string,
+  { prisma }: IContext
+) => {
+  const returnUser = await prisma.user.findUnique({ where: { resetVal } });
+
+  if (returnUser) {
+    return true;
+  } else {
+    return false;
+  }
+};

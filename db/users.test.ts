@@ -1,6 +1,11 @@
 import { vi, describe, test, expect, afterAll, beforeAll } from "vitest";
 import { PrismaClient } from "@prisma/client";
-import { createUser, login, getUserByEmail } from "./users";
+import {
+  createUser,
+  login,
+  getUserByEmail,
+  validatePasswordResetValue,
+} from "./users";
 
 const prisma = new PrismaClient({
   datasources: {
@@ -57,5 +62,29 @@ describe("getUserByEmail", () => {
   test("Should give an error if given an invalid email", async () => {
     const getUserResponse = await getUserByEmail("test", { prisma });
     expect(getUserResponse.error).toBe("Could not find user");
+  });
+});
+
+describe("validatePasswordResetValue()", () => {
+  test("Should return false when given incorrect value", async () => {
+    const response = await validatePasswordResetValue("incorrect_value", {
+      prisma,
+    });
+
+    expect(response).toBeFalsy();
+  });
+
+  test("Should return true when given a correct value", async () => {
+    const testValue = "TEST_VALUE";
+    await prisma.user.update({
+      where: { email: newUser.email },
+      data: { resetVal: testValue },
+    });
+
+    const response = await validatePasswordResetValue(testValue, {
+      prisma,
+    });
+
+    expect(response).toBeTruthy();
   });
 });
