@@ -1,19 +1,12 @@
 import { vi, describe, test, expect, afterAll, beforeAll } from "vitest";
-import { PrismaClient } from "@prisma/client";
+import prisma from "./prisma";
+
 import {
   createUser,
   login,
   getUserByEmail,
   validatePasswordResetValue,
 } from "./users";
-
-const prisma = new PrismaClient({
-  datasources: {
-    db: {
-      url: process.env.DATABASE_URL_TESTING,
-    },
-  },
-});
 
 // Disable mailer function so tests don't send unnecessary emails or cause
 // error thrown due to environment variables not being implementedß

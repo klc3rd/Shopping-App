@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";
 import loginText from "../../../utils/text/login-text";
@@ -6,7 +6,13 @@ import Link from "next/link";
 import Input from "../form/input";
 import validator from "validator";
 
-const LoginForm: React.FC = () => {
+interface ILoginForm {
+  forwardURL?: string;
+}
+
+const LoginForm: React.FC<ILoginForm> = (props) => {
+  const forwardURL = props.forwardURL || "/";
+
   const router = useRouter();
 
   const emailRef = useRef<HTMLInputElement>(null);
@@ -42,19 +48,7 @@ const LoginForm: React.FC = () => {
         return;
       }
 
-      if (typeof window !== "undefined") {
-        localStorage.setItem("redirect", "/");
-      }
-
-      // Check if user is verified, forward page accordingly
-      const verificationResponse = await fetch(`/api/verify/check/${email}`);
-      const verificationData = await verificationResponse.json();
-
-      if (verificationData.verified) {
-        router.replace("/");
-      } else {
-        router.replace("/verify/send");
-      }
+      router.replace(forwardURL);
     }
   };
 
