@@ -5,10 +5,11 @@ import ChangePassword from "../../../components/page/login/change-password";
 
 interface IResetPasswordPage {
   valid: boolean;
+  code: string;
 }
 
 const ResetPasswordPage: React.FC<IResetPasswordPage> = (props) => {
-  const { valid } = props;
+  const { valid, code } = props;
 
   return (
     <div>
@@ -17,7 +18,7 @@ const ResetPasswordPage: React.FC<IResetPasswordPage> = (props) => {
           This link is either invalid or expired.
         </div>
       )}
-      {valid && <ChangePassword />}
+      {valid && <ChangePassword code={code} />}
     </div>
   );
 };
@@ -34,6 +35,7 @@ export async function getServerSideProps(
   return {
     props: {
       valid: result,
+      code,
     },
   };
 }
