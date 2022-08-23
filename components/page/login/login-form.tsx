@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";
 import loginText from "../../../utils/text/login-text";
