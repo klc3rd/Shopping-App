@@ -1,6 +1,6 @@
 import { unstable_getServerSession } from "next-auth/next";
 import { NextApiRequest, NextApiResponse } from "next";
-import { authOptions } from "../pages/api/auth/[...nextauth]";
+import { authOptions } from "../../pages/api/auth/[...nextauth]";
 
 const getServerSideProps = async (context: {
   req: NextApiRequest;

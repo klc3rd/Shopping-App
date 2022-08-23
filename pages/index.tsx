@@ -2,7 +2,7 @@ import { useQuery, gql } from "@apollo/client";
 import Hero from "../components/page/hero";
 import { Session } from "next-auth";
 import TransitionContainer from "../components/page/transition";
-import getServerSideProps from "../db/serverProps";
+import getServerSideProps from "../db/serverProps/default";
 
 interface IIndex {
   session: Session;

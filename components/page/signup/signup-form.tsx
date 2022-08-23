@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { gql, useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
+import { signIn } from "next-auth/react";
 import Input from "../form/input";
 import Tos from "../form/tos";
 import validator from "validator";
@@ -117,6 +118,12 @@ const SignupForm: React.FC = () => {
       }
       return;
     }
+
+    await signIn("credentials", {
+      redirect: false,
+      email,
+      password,
+    });
 
     // Sets the email so the resend verification page knows who to send it to
     localStorage.setItem("email", email);

@@ -1,3 +1,7 @@
+import { unstable_getServerSession } from "next-auth/next";
+import { NextApiRequest, NextApiResponse } from "next";
+import { authOptions } from "../../pages/api/auth/[...nextauth]";
+
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import TransitionContainer from "../../components/page/transition";
@@ -56,6 +60,29 @@ const SendVerification = () => {
       </div>
     </TransitionContainer>
   );
+};
+
+export const getServerSideProps = async (context: {
+  req: NextApiRequest;
+  res: NextApiResponse;
+}) => {
+  const session = await unstable_getServerSession(
+    context.req,
+    context.res,
+    authOptions
+  );
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/login",
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
 };
 
 SendVerification.displayName = "SendVerification";

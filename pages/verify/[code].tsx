@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
-const VerifyUser = () => {
+const VerifyUser: React.FC = () => {
   const router = useRouter();
   const { code } = router.query;
 
@@ -31,4 +31,5 @@ const VerifyUser = () => {
   );
 };
 
+VerifyUser.displayName = "VerifyUser";
 export default VerifyUser;
