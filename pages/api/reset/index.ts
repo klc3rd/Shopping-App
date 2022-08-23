@@ -1,12 +1,10 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { PrismaClient } from "@prisma/client";
+import prisma from "../../../db/prisma";
 import mailer from "../../../utils/mailer";
 
 import { v4 as uuid } from "uuid";
 
 const ResetPassword = async (req: NextApiRequest, res: NextApiResponse) => {
-  const prisma = new PrismaClient();
-
   if (req.method === "POST") {
     try {
       const email = req.body.email;

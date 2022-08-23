@@ -1,9 +1,7 @@
 import { NextApiResponse, NextApiRequest } from "next";
-import { PrismaClient } from "@prisma/client";
+import prisma from "../../../db/prisma";
 
 const VerifyCode = async (req: NextApiRequest, res: NextApiResponse) => {
-  const prisma = new PrismaClient();
-
   const code = req.query.code as string;
 
   try {

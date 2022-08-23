@@ -1,9 +1,7 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { PrismaClient } from "@prisma/client";
+import prisma from "../../../db/prisma";
 import { login, getUserByEmail } from "../../../db/users";
-
-const prisma = new PrismaClient();
 
 export const authOptions: NextAuthOptions = {
   secret: process.env.AUTH_SECRET,
@@ -46,7 +44,10 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
-        return { email: response.user.email, name: response.user.username };
+        return {
+          email: response.user.email,
+          name: response.user.username,
+        };
       },
     }),
   ],

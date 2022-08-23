@@ -2,12 +2,10 @@ import { ApolloServer } from "apollo-server-micro";
 import { MicroRequest } from "apollo-server-micro/dist/types";
 import { typeDefs } from "./schema/schema";
 
-import { PrismaClient } from "@prisma/client";
+import prisma from "../../../db/prisma";
 import { Query } from "./resolvers/Query";
 import { Mutation } from "./resolvers/Mutation";
 import { ServerResponse } from "http";
-
-const prisma = new PrismaClient();
 
 const apolloServer = new ApolloServer({
   typeDefs,

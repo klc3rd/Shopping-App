@@ -16,7 +16,7 @@ const VerifyUser = () => {
     setTimeout(() => {
       router.replace("/login");
     }, 5000);
-  }, [code]);
+  }, [code, router]);
 
   return (
     <div className="verification">

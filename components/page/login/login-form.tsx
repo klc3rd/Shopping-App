@@ -42,8 +42,19 @@ const LoginForm: React.FC = () => {
         return;
       }
 
-      localStorage.setItem("redirect", "/");
-      router.replace("/login/verify");
+      if (typeof window !== "undefined") {
+        localStorage.setItem("redirect", "/");
+      }
+
+      // Check if user is verified, forward page accordingly
+      const verificationResponse = await fetch(`/api/verify/check/${email}`);
+      const verificationData = await verificationResponse.json();
+
+      if (verificationData.verified) {
+        router.replace("/");
+      } else {
+        router.replace("/verify/send");
+      }
     }
   };
 

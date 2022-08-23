@@ -38,7 +38,7 @@ export const createUser = async (
       password: passwordHash,
       verified: false,
       verifyVal,
-      resetVal: "",
+      resetVal: uuid(),
       role: "user",
     },
   });

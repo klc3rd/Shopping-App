@@ -1,6 +1,6 @@
 import { NextApiResponse, NextApiRequest } from "next";
 import { v4 as uuid } from "uuid";
-import { PrismaClient } from "@prisma/client";
+import prisma from "../../../db/prisma";
 import mailer from "../../../utils/mailer";
 
 const ResendVerification = async (
@@ -8,8 +8,6 @@ const ResendVerification = async (
   res: NextApiResponse
 ) => {
   if (req.method === "POST") {
-    const prisma = new PrismaClient();
-
     const email = req.body.email;
     const newVerificationCode = uuid();
 

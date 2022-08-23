@@ -1,12 +1,11 @@
 import { NextApiResponse, NextApiRequest } from "next";
 import bcrypt from "bcrypt";
-import { PrismaClient } from "@prisma/client";
+import prisma from "../../../db/prisma";
+import { v4 as uuid } from "uuid";
 
 const ChangePassword = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
     try {
-      const prisma = new PrismaClient();
-
       const code = req.body.code;
       const password = req.body.password;
 
@@ -22,7 +21,7 @@ const ChangePassword = async (req: NextApiRequest, res: NextApiResponse) => {
         },
         data: {
           password: newPasswordHash,
-          resetVal: "",
+          resetVal: uuid(),
         },
       });
 
