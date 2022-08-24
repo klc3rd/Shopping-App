@@ -14,15 +14,7 @@ const getServerSideProps = async (context: {
 
   const url = context.req.url;
 
-  if (session) {
-    if (session.user.verified !== true) {
-      return {
-        redirect: {
-          destination: "/verify/send",
-        },
-      };
-    }
-  } else {
+  if (!session || (session && session.user.verified === false)) {
     return {
       redirect: {
         destination: "/login",

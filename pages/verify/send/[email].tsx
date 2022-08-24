@@ -1,20 +1,14 @@
 import { unstable_getServerSession } from "next-auth/next";
 import { NextApiRequest, NextApiResponse } from "next";
-import { authOptions } from "../../pages/api/auth/[...nextauth]";
+import { authOptions } from "../../api/auth/[...nextauth]";
 
-import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import TransitionContainer from "../../components/page/transition";
+import TransitionContainer from "../../../components/page/transition";
 import Countdown from "react-countdown";
 
-const SendVerification = () => {
+const SendVerification: React.FC = () => {
   const router = useRouter();
-  const [email, setEmail] = useState<string | null>(null);
-
-  useEffect(() => {
-    const emailStorage = localStorage.getItem("email");
-    setEmail(emailStorage);
-  }, []);
+  const { email } = router.query;
 
   // Resends verification then refreshes the page and counter
   // in case the user needs another verification email

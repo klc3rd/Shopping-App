@@ -13,6 +13,7 @@ const Menu: React.FC = () => {
       {session?.user && (
         <span className="welcome">Welcome, {session.user.name}</span>
       )}
+
       <div className="menu-box">
         <Link href="/">
           <span
@@ -23,7 +24,7 @@ const Menu: React.FC = () => {
             Home
           </span>
         </Link>
-        {!session && (
+        {(!session || session.user.verified === false) && (
           <>
             <Link href="/login">
               <span
@@ -45,7 +46,7 @@ const Menu: React.FC = () => {
             </Link>
           </>
         )}
-        {!!session && (
+        {!!session && session.user.verified === true && (
           <>
             <Link href="/new">
               <span

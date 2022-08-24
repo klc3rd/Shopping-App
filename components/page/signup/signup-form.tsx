@@ -126,8 +126,7 @@ const SignupForm: React.FC = () => {
     });
 
     // Sets the email so the resend verification page knows who to send it to
-    localStorage.setItem("email", email);
-    router.replace("/verify/send");
+    router.replace(`/verify/send/${email}`);
   };
 
   // Runs code after userCreation graphql is ran and a
