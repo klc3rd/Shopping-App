@@ -15,7 +15,6 @@ const LeftBox = () => {
       onUploadProgress: (event: any) => {
         setUploadingStatus(true);
       },
-      onUploadSuccess: (event: any) => {},
     };
 
     const response = await axios.post("/api/upload", formData, config);
