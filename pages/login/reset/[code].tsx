@@ -1,6 +1,6 @@
 import { NextApiResponse, NextApiRequest } from "next";
 import { validatePasswordResetValue } from "../../../db/users";
-import { PrismaClient } from "@prisma/client";
+import prisma from "../../../db/prisma";
 import ChangePassword from "../../../components/page/login/change-password";
 
 interface IResetPasswordPage {
@@ -27,7 +27,6 @@ export async function getServerSideProps(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const prisma = new PrismaClient();
   const code = req.query.code as string;
 
   const result = await validatePasswordResetValue(code, { prisma });

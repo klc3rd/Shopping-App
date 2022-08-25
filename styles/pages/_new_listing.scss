@@ -1,0 +1,100 @@
+.new {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+
+  &-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 120rem;
+    height: 100%;
+    margin: 5vh 5vw 5vh 5vw;
+    box-shadow: 5px 5px 10px rgba($color-black-300, 0.1);
+
+    @media (max-width: $screen-width-medium) {
+      flex-direction: column-reverse;
+    }
+
+    &-left {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      width: 25rem;
+      height: 100%;
+
+      @media (max-width: $screen-width-medium) {
+        width: 100%;
+      }
+
+      &-box {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        height: 50rem; // Remove this when form is setup
+        overflow: auto;
+        scrollbar-color: $color-primary-100 $color-gray-100;
+
+        @media (max-width: $screen-width-medium) {
+          flex-direction: row;
+          height: 100%;
+        }
+      }
+
+      &-btnbox {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: flex-end;
+        padding: 1rem;
+      }
+    }
+
+    &-right {
+      width: 100%;
+      padding: 1rem;
+
+      &-heading {
+        @include font-heading(400);
+      }
+    }
+  }
+}
+
+.empty {
+  @include font-paragraph(300);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 20rem;
+  max-width: 20rem;
+  min-height: 20rem;
+  max-height: 20rem;
+  margin: 1rem;
+  border: 1px solid rgba($color-black-300, 0.1);
+}
+
+.image-btn {
+  background-color: $color-primary-100;
+  color: $color-white;
+  border: 0;
+  padding: 1rem 2rem;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: $color-primary-200;
+  }
+
+  &:active {
+    transform: translate(-1px, -1px);
+    box-shadow: 1px 1px 5px rgba($color-black, 0.1);
+  }
+
+  &-loading {
+    @include font-paragraph(300);
+    display: inline-block;
+    padding: 1rem 2rem;
+  }
+}
