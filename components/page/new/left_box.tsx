@@ -1,10 +1,12 @@
-import { useContext, useState } from "react";
+import { useContext, useState, FormEvent } from "react";
 import EmptyImage from "./empty_image";
 import FileUploadBtn from "./ui/file-upload-btn";
 import axios from "axios";
 import { NewListingContext } from "./provider";
 
 const LeftBox = () => {
+  let imageCount = 0;
+
   const newListingCtx = useContext(NewListingContext);
   const [uploadingStatus, setUploadingStatus] = useState<boolean>(false);
 
@@ -12,7 +14,7 @@ const LeftBox = () => {
     console.log(newListingCtx);
     const config = {
       headers: { "content-type": "multipart/form-data" },
-      onUploadProgress: (event: any) => {
+      onUploadProgress: (event: FormEvent) => {
         setUploadingStatus(true);
       },
     };
@@ -21,12 +23,15 @@ const LeftBox = () => {
 
     if (response.status === 200) {
       setUploadingStatus(false);
-    }
 
-    newListingCtx.images.push({
-      folder: response.data.folder,
-      filename: response.data.filename,
-    });
+      newListingCtx.images.push({
+        id: imageCount,
+        folder: response.data.folder,
+        filename: response.data.filename,
+      });
+
+      imageCount++;
+    }
   };
 
   return (

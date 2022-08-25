@@ -12,6 +12,7 @@
   "dependencies": {
     "@apollo/client": "^3.6.9",
     "@prisma/client": "^4.2.1",
+    "@typegoose/auto-increment": "^1.6.0",
     "@types/bcrypt": "^5.0.0",
     "@types/multer": "^1.4.7",
     "@types/nodemailer": "^6.4.5",

@@ -4,6 +4,7 @@ import { v4 as uuid } from "uuid";
 interface INewListingContext {
   productId: string;
   images: {
+    id: number;
     folder: string;
     filename: string;
   }[];
