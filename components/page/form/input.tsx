@@ -5,17 +5,20 @@ interface IInput {
   children: string;
   icon?: string;
   inputType?: string;
+  className?: string;
 }
 
 const Input = React.forwardRef<HTMLInputElement, IInput>((props, ref) => {
-  const { children, icon, inputType } = props;
+  const { children, icon, inputType, className } = props;
 
   const [viewPassword, setViewPassword] = useState<boolean>(false);
 
   // Allows changing of the input type if it is a password
   // field and if the icon is clicked
   let renderType;
-  if (inputType !== "password" && viewPassword == false) {
+  if (inputType === "number") {
+    renderType = "number";
+  } else if (inputType !== "password" && viewPassword == false) {
     renderType = "text";
   } else if (inputType === "password" && viewPassword === false) {
     renderType = "password";
@@ -26,7 +29,7 @@ const Input = React.forwardRef<HTMLInputElement, IInput>((props, ref) => {
   return (
     <div className="auth">
       <input
-        className="auth-input"
+        className={`auth-input ` + className}
         type={renderType}
         placeholder={children}
         ref={ref}

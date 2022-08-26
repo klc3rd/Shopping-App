@@ -1,7 +1,15 @@
+import { useRef } from "react";
 import LeftBox from "./left_box";
 import NewListingProvider from "./provider";
+import Input from "../form/input";
+import TextArea from "../form/textarea";
 
 const NewListing: React.FC = () => {
+  const productNameRef = useRef<HTMLInputElement>(null);
+  const priceRef = useRef<HTMLInputElement>(null);
+  const descriptionRef = useRef<HTMLInputElement>(null);
+  const bodyRef = useRef<HTMLTextAreaElement>(null);
+
   return (
     <NewListingProvider>
       <div className="new">
@@ -13,6 +21,20 @@ const NewListing: React.FC = () => {
             <span className="new-container-right-heading">
               New Product Listing
             </span>
+            <div className="new-container-grid">
+              <Input ref={productNameRef}>Product Name</Input>
+              <Input ref={priceRef} inputType="number">
+                Price
+              </Input>
+              <div className="new-container-grid-bottom">
+                <Input ref={descriptionRef}>Description</Input>
+              </div>
+              <TextArea
+                ref={bodyRef}
+                className="new-container-grid-textarea"
+                placeholder="Listing body"
+              />
+            </div>
           </div>
         </div>
       </div>

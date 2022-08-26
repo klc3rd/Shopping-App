@@ -2,7 +2,6 @@ import React from "react";
 import { v4 as uuid } from "uuid";
 
 interface INewListingContext {
-  productId: string;
   count: number;
   default: number;
   images: {
@@ -13,7 +12,6 @@ interface INewListingContext {
 }
 
 const defaultValue: INewListingContext = {
-  productId: uuid(), // generate default UUID to use for product reference, so it is available for multiple uploads simultaneously
   count: 0,
   default: 0,
   images: [],
