@@ -7,11 +7,11 @@ interface IImageBox {
   id: number;
   folder: string;
   file: string;
-  setCount: Dispatch<any>;
+  setRender: Dispatch<any>;
 }
 
 const ImageBox: React.FC<IImageBox> = (props) => {
-  const { id, folder, file, setCount } = props;
+  const { id, folder, file, setRender } = props;
 
   const newListingCtx = useContext(NewListingContext);
 
@@ -24,7 +24,7 @@ const ImageBox: React.FC<IImageBox> = (props) => {
       return image.id !== id;
     });
 
-    setCount((prevCount: number) => prevCount + 1);
+    setRender((prevCount: number) => prevCount + 1);
   };
 
   return (

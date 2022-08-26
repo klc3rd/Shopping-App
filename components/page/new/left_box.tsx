@@ -10,7 +10,7 @@ const LeftBox = () => {
   const newListingCtx = useContext(NewListingContext);
   const images = newListingCtx.images;
   const [uploadingStatus, setUploadingStatus] = useState<boolean>(false);
-  const [_, setChangesCount] = useState<number>(0);
+  const [_, renderChanges] = useState<number>(0);
 
   const onChange = async (formData: FormData) => {
     const config = {
@@ -34,7 +34,7 @@ const LeftBox = () => {
       newListingCtx.count++;
 
       // This is to force a rerender anytime an image is added or deleted
-      setChangesCount((prevCount) => prevCount + 1);
+      renderChanges((prev) => prev + 1);
     }
   };
 
@@ -51,7 +51,7 @@ const LeftBox = () => {
                   id={image.id}
                   folder={image.folder}
                   file={image.filename}
-                  setCount={setChangesCount}
+                  setRender={renderChanges}
                 />
               );
             })}
