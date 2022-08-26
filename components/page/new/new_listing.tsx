@@ -26,7 +26,7 @@ const NewListing: React.FC = () => {
               <div className="new-container-grid-innerflex">
                 <span>$</span>
                 <Input ref={priceRef} inputType="number">
-                  Price XXXX.XX
+                  Price
                 </Input>
               </div>
               <div className="new-container-grid-bottom">
@@ -37,6 +37,9 @@ const NewListing: React.FC = () => {
                 className="new-container-grid-textarea"
                 placeholder="Listing body"
               />
+            </div>
+            <div className="new-container-submit-box">
+              <button className="auth-submit__btn">Create Listing</button>
             </div>
           </div>
         </div>
