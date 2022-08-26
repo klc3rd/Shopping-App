@@ -33,6 +33,12 @@ $width: 120rem;
         height: 50vh;
         grid-column: 1 / -1;
       }
+
+      &-innerflex {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
     }
 
     &-left {

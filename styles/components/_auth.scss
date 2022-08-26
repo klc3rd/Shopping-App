@@ -15,6 +15,10 @@
     width: 100%;
     background: none;
     border: 1px solid rgba(0, 0, 0, 0);
+
+    &:invalid {
+      border: 2px solid $color-error;
+    }
   }
 
   &-input::placeholder {
@@ -101,6 +105,7 @@
     overflow: auto;
     border: 1px solid rgba($color-black, 0.25);
     border-radius: 5px;
+    padding: 1rem;
 
     &:focus {
       outline: 1px solid $color-primary-100;

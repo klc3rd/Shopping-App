@@ -33,6 +33,8 @@ const Input = React.forwardRef<HTMLInputElement, IInput>((props, ref) => {
         type={renderType}
         placeholder={children}
         ref={ref}
+        step="0.01"
+        max="10000000"
       />
       {icon && (
         <div

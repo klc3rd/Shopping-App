@@ -23,9 +23,12 @@ const NewListing: React.FC = () => {
             </span>
             <div className="new-container-grid">
               <Input ref={productNameRef}>Product Name</Input>
-              <Input ref={priceRef} inputType="number">
-                Price
-              </Input>
+              <div className="new-container-grid-innerflex">
+                <span>$</span>
+                <Input ref={priceRef} inputType="number">
+                  Price XXXX.XX
+                </Input>
+              </div>
               <div className="new-container-grid-bottom">
                 <Input ref={descriptionRef}>Description</Input>
               </div>
