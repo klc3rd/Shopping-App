@@ -19,4 +19,5 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, ITextArea>(
   }
 );
 
+TextArea.displayName = "TextArea";
 export default TextArea;
