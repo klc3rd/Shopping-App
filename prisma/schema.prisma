@@ -25,16 +25,17 @@ model User {
 }
 
 model Product {
-  id          Int     @id @default(autoincrement())
-  images      Image[]
-  name        String
-  description String
-  body        String
-  price       Float
-  sellerId    Int
-  visible     Boolean
-  quantity    Int
-  seller      User    @relation(fields: [sellerId], references: [id])
+  id           Int     @id @default(autoincrement())
+  images       Image[]
+  defaultImage Int
+  name         String
+  description  String
+  body         String
+  price        Float
+  sellerId     Int
+  visible      Boolean
+  quantity     Int
+  seller       User    @relation(fields: [sellerId], references: [id])
 }
 
 model Image {
