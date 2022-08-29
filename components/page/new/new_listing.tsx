@@ -100,7 +100,8 @@ const NewListing: React.FC = () => {
 
   useEffect(() => {
     if (data) {
-      console.log(data.productCreate.product.id);
+      const productID = data.productCreate.product.id;
+      router.replace(`/product/preview/${productID}`);
     }
   }, [data]);
 

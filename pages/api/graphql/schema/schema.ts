@@ -2,8 +2,8 @@ import { gql } from "apollo-server-micro";
 
 export const typeDefs = gql`
   type Query {
-    getHello: String
-    user(id: ID): User
+    user(id: Int): User
+    product(id: Int): Product
   }
 
   type Mutation {
@@ -41,7 +41,6 @@ export const typeDefs = gql`
   type ProductReturn {
     error: String
     product: Product
-    imagesCreate(input: [ImageInput]): [Image]
   }
 
   type User {

@@ -1,11 +1,20 @@
+import { IProduct } from "Product";
 import { IContext } from "graph";
-import { IUser } from "Users";
+
+interface Iid {
+  id: number;
+}
 
 export const Query = {
-  getHello: () => "Hello, world!",
-  user: async (_: any, { id }: { id: string }, { prisma }: IContext) => {
+  user: async (_: any, { id }: Iid, { prisma }: IContext) => {
     const user = await prisma.user.findUnique({ where: { id: id } });
 
     return user;
+  },
+
+  product: async (_: any, { id }: Iid, { prisma }: IContext) => {
+    const product = await prisma.product.findUnique({ where: { id: id } });
+
+    return product;
   },
 };
