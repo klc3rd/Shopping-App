@@ -45,6 +45,8 @@ const NewListing: React.FC = () => {
   const [generalError, setGeneralError] = useState<string | null>(null);
 
   const newPostHandler = async () => {
+    clearErrors();
+
     const sellerId = session!.user.id;
     const name = productNameRef.current!.value;
     const price = priceRef.current!.value;
@@ -77,6 +79,7 @@ const NewListing: React.FC = () => {
     }
 
     const images = newListingCtx.images;
+    console.log(images);
 
     const addProductObj = {
       variables: {
