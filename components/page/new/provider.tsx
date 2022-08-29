@@ -3,7 +3,6 @@ import { v4 as uuid } from "uuid";
 
 interface INewListingContext {
   count: number;
-  default: number;
   images: {
     id: number;
     folder: string;
@@ -13,7 +12,6 @@ interface INewListingContext {
 
 const defaultValue: INewListingContext = {
   count: 0,
-  default: 0,
   images: [],
 };
 

@@ -1,5 +1,5 @@
 import { IContext } from "graph";
-import { createUser } from "../../../../db/users";
+import { createUser } from "../../../../../db/users";
 import { IUser } from "Users";
 
 interface IReturnUser {

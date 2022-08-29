@@ -4,13 +4,26 @@ import { typeDefs } from "./schema/schema";
 
 import prisma from "../../../db/prisma";
 import { Query } from "./resolvers/Query";
-import { Mutation } from "./resolvers/Mutation";
+import { Mutation } from "./resolvers/Mutations/Mutation";
 import { ServerResponse } from "http";
+
+import { unstable_getServerSession } from "next-auth/next";
+import { authOptions } from "../../api/auth/[...nextauth]";
 
 const apolloServer = new ApolloServer({
   typeDefs,
   resolvers: { Query, Mutation },
-  context: { prisma },
+  context: async ({ req, res }) => {
+    const session = await await unstable_getServerSession(
+      req,
+      res,
+      authOptions
+    );
+    return {
+      prisma,
+      session,
+    };
+  },
 });
 
 export const config = {

@@ -5,11 +5,12 @@ interface IInput {
   children: string;
   icon?: string;
   inputType?: string;
+  step?: number;
   className?: string;
 }
 
 const Input = React.forwardRef<HTMLInputElement, IInput>((props, ref) => {
-  const { children, icon, inputType, className } = props;
+  const { children, icon, inputType, step, className } = props;
 
   const [viewPassword, setViewPassword] = useState<boolean>(false);
 
@@ -33,7 +34,7 @@ const Input = React.forwardRef<HTMLInputElement, IInput>((props, ref) => {
         type={renderType}
         placeholder={children}
         ref={ref}
-        step="0.01"
+        step={step}
         max="10000000"
       />
       {icon && (

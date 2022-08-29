@@ -5,5 +5,7 @@ declare module "graph" {
       never,
       Prisma.RejectOnNotFound | Prisma.RejectPerOperation | undefined
     >;
+
+    session?: Session;
   }
 }

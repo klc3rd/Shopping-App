@@ -16,7 +16,6 @@ const ImageBox: React.FC<IImageBox> = (props) => {
   const newListingCtx = useContext(NewListingContext);
 
   const fileLocation = path.join("/uploads", folder, file);
-  console.log(fileLocation);
 
   const clickHandler = () => {
     newListingCtx.images = newListingCtx.images.filter((image) => {

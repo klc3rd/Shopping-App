@@ -10,7 +10,6 @@ interface IImageBox {
 const ImageBox: React.FC<IImageBox> = (props) => {
   const { folder, file } = props;
   const fileLocation = path.join("/uploads", folder, file);
-  console.log(fileLocation);
 
   return (
     <div className="uploaded-image">

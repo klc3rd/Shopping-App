@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "updatedb": "prisma db push",
     "test": "vitest --run"
   },
   "dependencies": {
