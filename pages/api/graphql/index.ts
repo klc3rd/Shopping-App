@@ -15,11 +15,7 @@ const apolloServer = new ApolloServer({
   typeDefs,
   resolvers: { Query, Product, Mutation },
   context: async ({ req, res }) => {
-    const session = await await unstable_getServerSession(
-      req,
-      res,
-      authOptions
-    );
+    const session = await unstable_getServerSession(req, res, authOptions);
     return {
       prisma,
       session,
