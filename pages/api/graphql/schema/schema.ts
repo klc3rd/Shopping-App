@@ -28,7 +28,6 @@ export const typeDefs = gql`
 
   input ImageInput {
     productID: Int
-    id: Int
     filename: String!
     folder: String!
   }
