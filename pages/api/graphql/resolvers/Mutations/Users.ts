@@ -1,9 +1,10 @@
 import { IContext } from "graph";
-import { createUser } from "../../../../../db/users";
+import { createUser, login } from "../../../../../db/users";
+
 import { IUser } from "Users";
 
 interface IReturnUser {
-  error?: string;
+  error?: string | null;
   user: IUser | null;
 }
 
