@@ -1,4 +1,3 @@
-import { useQuery, gql } from "@apollo/client";
 import Hero from "../components/page/hero";
 import TransitionContainer from "../components/page/transition";
 
