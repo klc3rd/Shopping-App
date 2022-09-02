@@ -5,9 +5,6 @@ import Link from "next/link";
 const Hero = () => {
   return (
     <div className="hero">
-      <div className="hero-image">
-        <Image src={HeroImage} alt="Hands charging card" />
-      </div>
       <div className="hero-polygon">
         <div className="hero-box">
           <span className="hero-box__text hero-box__text-1">

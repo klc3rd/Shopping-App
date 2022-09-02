@@ -1,4 +1,3 @@
-import { IProduct } from "Product";
 import { IContext } from "graph";
 
 interface Iid {
@@ -16,5 +15,13 @@ export const Query = {
     const product = await prisma.product.findUnique({ where: { id: id } });
 
     return product;
+  },
+
+  products: async (_: any, { id }: Iid, { prisma }: IContext) => {
+    const products = await prisma.product.findMany({
+      orderBy: { id: "desc" },
+    });
+
+    return products;
   },
 };

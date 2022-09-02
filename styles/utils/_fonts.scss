@@ -11,6 +11,8 @@
     font-size: 4.2rem;
   } @else if $size == 300 {
     font-size: 3.2rem;
+  } @else if $size == 350 {
+    font-size: 2.8rem;
   } @else if $size == 400 {
     font-size: 2.4rem;
   } @else {
@@ -29,6 +31,8 @@
     font-size: 1.8rem;
   } @else if $size == 300 {
     font-size: 1.6rem;
+  } @else if $size == 400 {
+    font-size: 1.4rem;
   } @else {
     font-size: $size;
   }

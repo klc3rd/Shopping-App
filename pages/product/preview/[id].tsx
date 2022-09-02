@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import ProductView from "../../../components/page/view-product/view";
+import TransitionContainer from "../../../components/page/transition";
 
 const PreviewProductPage = () => {
   const router = useRouter();
@@ -7,9 +8,11 @@ const PreviewProductPage = () => {
   const productID = parseInt(router.query.id as string);
 
   return (
-    <div>
-      <ProductView productID={productID} />
-    </div>
+    <TransitionContainer>
+      <div className="view-product">
+        <ProductView mode="preview" productID={productID} />
+      </div>
+    </TransitionContainer>
   );
 };
 
