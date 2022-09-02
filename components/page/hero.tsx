@@ -1,5 +1,3 @@
-import Image from "next/image";
-import HeroImage from "../../images/hero.avif";
 import Link from "next/link";
 
 const Hero = () => {
