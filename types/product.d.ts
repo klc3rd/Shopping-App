@@ -15,4 +15,13 @@ declare module "Product" {
     folder: string;
     productID?: number;
   }
+
+  interface IPassedProduct {
+    id: number;
+    name: string;
+    quantity: number;
+    description: string;
+    body: string;
+    images: IImage[];
+  }
 }
