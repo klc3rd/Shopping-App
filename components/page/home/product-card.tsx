@@ -12,7 +12,7 @@ const ProductCard: React.FC<IProductCard> = (props) => {
   return (
     <div className="products-card">
       <div className="products-card__image">
-        {product.images[0] && (
+        {product?.images[0] && (
           <Image
             src={path.join(
               "/uploads/" +
