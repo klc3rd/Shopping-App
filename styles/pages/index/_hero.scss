@@ -46,7 +46,7 @@
         display: block;
       }
 
-      @media (max-width: $screen-width-small) {
+      @media (max-width: $screen-width-medium) {
         @include font-heading(200);
       }
     }
@@ -65,7 +65,7 @@
       transition: all 0.3s;
       z-index: 1;
 
-      @media (max-width: $screen-width-small) {
+      @media (max-width: $screen-width-medium) {
         @include font-paragraph(100);
       }
     }
@@ -78,19 +78,4 @@
       background-color: $color-primary-300;
     }
   }
-
-  // &-image {
-  //   position: absolute;
-  //   right: 0;
-  //   width: 30%;
-  //   z-index: 1;
-
-  //   @media (max-width: $screen-width-large) {
-  //     width: 40%;
-  //   }
-
-  //   @media (max-width: $screen-width-medium) {
-  //     display: none;
-  //   }
-  // }
 }

@@ -21,6 +21,7 @@ declare module "Product" {
     name: string;
     quantity: number;
     description: string;
+    price: number;
     body: string;
     images: IImage[];
   }

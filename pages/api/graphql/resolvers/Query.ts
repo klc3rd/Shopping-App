@@ -20,6 +20,11 @@ export const Query = {
   products: async (_: any, { id }: Iid, { prisma }: IContext) => {
     const products = await prisma.product.findMany({
       orderBy: { id: "desc" },
+      where: {
+        NOT: {
+          quantity: 0,
+        },
+      },
     });
 
     return products;

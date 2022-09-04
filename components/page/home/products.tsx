@@ -10,6 +10,7 @@ const ProductsPage: React.FC = () => {
         name
         quantity
         description
+        price
         body
         images {
           filename
