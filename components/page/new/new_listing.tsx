@@ -103,7 +103,7 @@ const NewListing: React.FC = () => {
       const productID = data.productCreate.product.id;
       router.replace(`/product/preview/${productID}`);
     }
-  }, [data]);
+  }, [data, router]);
 
   const clearErrors = () => {
     setGeneralError(null);

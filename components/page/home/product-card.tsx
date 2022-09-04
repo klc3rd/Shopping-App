@@ -26,6 +26,7 @@ const ProductCard: React.FC<IProductCard> = (props) => {
                 "/" +
                 product.images[0].filename
             )}
+            alt="Product Image"
             width="100%"
             height="100%"
             layout="responsive"

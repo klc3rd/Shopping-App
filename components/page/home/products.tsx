@@ -27,7 +27,7 @@ const ProductsPage: React.FC = () => {
       <div className="products-container">
         {data?.products &&
           data.products.map((product: IPassedProduct) => (
-            <ProductCard product={product} />
+            <ProductCard key={product.id} product={product} />
           ))}
       </div>
     </div>
