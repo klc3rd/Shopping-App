@@ -26,6 +26,7 @@
 
     &-link {
       @include font-paragraph(200);
+      color: $color-primary-200;
       cursor: pointer;
 
       @media (max-width: $screen-width-small) {
