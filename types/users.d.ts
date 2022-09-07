@@ -1,5 +1,6 @@
 declare module "Users" {
   interface IUser {
+    id?: number;
     name: string;
     username: string;
     email: string;

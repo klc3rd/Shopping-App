@@ -16,18 +16,6 @@
       url("../../../images/background.webp");
     background-size: 100%;
     background-position: center center;
-    // clip-path: polygon(0% 0%, 100% 0%, 100% 80%, 0% 100%);
-    // -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 80%, 0% 100%);
-
-    // @media (max-width: $screen-width-medium) {
-    //   clip-path: unset;
-    //   -webkit-clip-path: unset;
-    // }
-
-    // @media (max-height: $screen-height-medium) {
-    //   clip-path: unset;
-    //   -webkit-clip-path: unset;
-    // }
   }
 
   &-box {

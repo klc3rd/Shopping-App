@@ -37,6 +37,15 @@ CREATE TABLE "Image" (
     CONSTRAINT "Image_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "Cart" (
+    "id" SERIAL NOT NULL,
+    "products" INTEGER[],
+    "userId" INTEGER NOT NULL,
+
+    CONSTRAINT "Cart_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
 
@@ -54,3 +63,6 @@ ALTER TABLE "Product" ADD CONSTRAINT "Product_sellerId_fkey" FOREIGN KEY ("selle
 
 -- AddForeignKey
 ALTER TABLE "Image" ADD CONSTRAINT "Image_productID_fkey" FOREIGN KEY ("productID") REFERENCES "Product"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Cart" ADD CONSTRAINT "Cart_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

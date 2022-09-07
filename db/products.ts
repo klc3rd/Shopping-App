@@ -1,28 +1,3 @@
-// Temporary comment to show mutation query
-// mutation {
-//   productCreate(input: {
-//     name: "Name",
-//     body: "Body",
-//     description: "Desc",
-//     quantity: 5,
-//     price: 250,
-//     sellerId: 1
-//   },
-//     images: [{
-//       filename: "Test",
-//       folder: "Test2",
-//     }, {
-//       filename: "Another",
-//       folder: "More"
-//     }]
-//   ){
-//   product {
-//     name
-//     description
-//   }
-//   }
-// }
-
 import { IImage } from "Product";
 import { IContext } from "graph";
 

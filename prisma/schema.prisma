@@ -22,6 +22,7 @@ model User {
   resetVal  String    @unique
   role      String
   products  Product[]
+  Cart      Cart[]
 }
 
 model Product {
@@ -43,4 +44,11 @@ model Image {
   folder    String
   productID Int
   product   Product @relation(fields: [productID], references: [id])
+}
+
+model Cart {
+  id      Int  @id @default(autoincrement())
+  user    User @relation(fields: [userId], references: [id])
+  product Int
+  userId  Int
 }
