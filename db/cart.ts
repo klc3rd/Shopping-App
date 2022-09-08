@@ -1,5 +1,11 @@
 import { IContext } from "graph";
 
+interface ICart {
+  id: number;
+  product: number;
+  userId: number;
+}
+
 export const addItemToCart = async (
   productID: number,
   userID: number,
@@ -57,4 +63,24 @@ export const deleteAllFromCart = async (
   });
 
   return "Item deleted";
+};
+
+export const getCartItems = async (userID: number, { prisma }: IContext) => {
+  const allItems = await prisma.cart.findMany({
+    where: {
+      userId: userID,
+    },
+  });
+
+  const cart: { [key: number]: number } = {};
+
+  allItems.map((item: ICart) => {
+    if (item.product in cart) {
+      cart[item.product] = cart[item.product] + 1;
+    } else {
+      cart[item.product] = 1;
+    }
+  });
+
+  return cart;
 };
