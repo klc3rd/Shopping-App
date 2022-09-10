@@ -5,6 +5,7 @@ export const typeDefs = gql`
     user(id: Int): User
     product(id: Int): Product
     products: [Product]
+    cart: [CartReturn]
   }
 
   type Mutation {
@@ -17,7 +18,7 @@ export const typeDefs = gql`
 
     productCreate(input: ProductInput, images: [ImageInput]): ProductReturn
 
-    cartAddProduct(productID: Int): ProductReturn
+    cartAddProduct(productID: Int): CartAddReturn
   }
 
   input ProductInput {
@@ -39,6 +40,16 @@ export const typeDefs = gql`
   type UserReturn {
     error: String
     user: User
+  }
+
+  type CartReturn {
+    product: Product
+    quantity: Int
+  }
+
+  type CartAddReturn {
+    error: String
+    message: String
   }
 
   type ProductReturn {

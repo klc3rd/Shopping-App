@@ -5,7 +5,7 @@ import { addItemToCart } from "../../../../../db/cart";
 
 interface ReturnProduct {
   error?: string;
-  product?: IProduct;
+  message?: string;
 }
 
 export const cartAddProduct = async (
@@ -19,9 +19,9 @@ export const cartAddProduct = async (
     };
   }
 
-  const product = await addItemToCart(productID, session.user.id, { prisma });
+  await addItemToCart(productID, session.user.id, { prisma });
 
   return {
-    product,
+    message: "Item added to cart",
   };
 };
