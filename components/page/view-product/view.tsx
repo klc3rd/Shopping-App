@@ -1,9 +1,11 @@
-import { useQuery, gql } from "@apollo/client";
+import { useQuery, useMutation, gql } from "@apollo/client";
 import Link from "next/link";
 import path from "path";
 import ReactMarkdown from "react-markdown";
 import Image from "next/image";
 import Gallery from "./gallery";
+
+import { useSession } from "next-auth/react";
 
 interface IProductView {
   productID: number;
@@ -16,6 +18,8 @@ const ProductView: React.FC<IProductView> = (props) => {
     style: "currency",
     currency: "USD",
   });
+
+  const { data: session } = useSession();
 
   const query = gql`
     query ($productID: Int) {
@@ -34,7 +38,26 @@ const ProductView: React.FC<IProductView> = (props) => {
     }
   `;
 
+  const addCartMutation = gql`
+    mutation ($productID: Int!) {
+      cartAddProduct(productID: $productID) {
+        message
+      }
+    }
+  `;
+
   const { data } = useQuery(query, { variables: { productID } });
+  const [addProduct, addProductData] = useMutation(addCartMutation, {
+    variables: { productID },
+  });
+
+  const addToCart = async () => {
+    await addProduct({ variables: { productID } });
+
+    /**
+     * TODO: Add visual indication of adding to cart
+     */
+  };
 
   return (
     <div className="view-product-container">
@@ -79,6 +102,13 @@ const ProductView: React.FC<IProductView> = (props) => {
               <span className="view-product-container__quantity">
                 {data?.product.quantity} in stock
               </span>
+              {mode == "view" && data?.product.quantity > 0 && session?.user && (
+                <span>
+                  <button className="cart-add-btn" onClick={addToCart}>
+                    Add to Cart
+                  </button>
+                </span>
+              )}
               {mode == "preview" && (
                 <span style={{ marginTop: "1rem" }}>
                   <Link href="/products">

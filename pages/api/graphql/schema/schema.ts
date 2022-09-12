@@ -18,7 +18,9 @@ export const typeDefs = gql`
 
     productCreate(input: ProductInput, images: [ImageInput]): ProductReturn
 
-    cartAddProduct(productID: Int): CartAddReturn
+    cartAddProduct(productID: Int!): CartAddReturn
+    cartDeleteProduct(productID: Int!): String
+    cartDeleteAllOfProduct(productID: Int!): String
   }
 
   input ProductInput {

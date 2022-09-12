@@ -1,0 +1,20 @@
+.cart {
+  &-add-btn {
+    border: 0;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+
+    background-color: $color-primary-light;
+
+    &:hover {
+      color: $color-white;
+      background-color: $color-primary-200;
+    }
+
+    &:active {
+      transform: translate(-1px, -1px);
+      box-shadow: 1px 1px 20px rgba($color-black, 0.1);
+    }
+  }
+}
