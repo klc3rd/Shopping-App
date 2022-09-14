@@ -4,6 +4,7 @@ import path from "path";
 import ReactMarkdown from "react-markdown";
 import Image from "next/image";
 import Gallery from "./gallery";
+import { useRouter } from "next/router";
 
 import { useSession } from "next-auth/react";
 
@@ -13,6 +14,8 @@ interface IProductView {
 }
 
 const ProductView: React.FC<IProductView> = (props) => {
+  const router = useRouter();
+
   const { productID, mode } = props;
   const formatter = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -47,16 +50,14 @@ const ProductView: React.FC<IProductView> = (props) => {
   `;
 
   const { data } = useQuery(query, { variables: { productID } });
-  const [addProduct, addProductData] = useMutation(addCartMutation, {
+  const [addProduct] = useMutation(addCartMutation, {
     variables: { productID },
   });
 
   const addToCart = async () => {
     await addProduct({ variables: { productID } });
 
-    /**
-     * TODO: Add visual indication of adding to cart
-     */
+    router.push("/cart");
   };
 
   return (
