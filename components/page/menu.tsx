@@ -4,6 +4,8 @@ import { useSession } from "next-auth/react";
 
 import { useRouter } from "next/router";
 
+import CartButton from "./cart/cart_menu_button";
+
 const Menu: React.FC = () => {
   const router = useRouter();
   const { data: session } = useSession();
@@ -76,6 +78,11 @@ const Menu: React.FC = () => {
                 Logout
               </span>
             </Link>
+            {session && session.user.verified === true && (
+              <span>
+                <CartButton />
+              </span>
+            )}
           </>
         )}
       </div>

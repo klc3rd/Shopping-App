@@ -6,6 +6,7 @@ export const typeDefs = gql`
     product(id: Int): Product
     products: [Product]
     cart: [CartReturn]
+    cartCount: Int
   }
 
   type Mutation {

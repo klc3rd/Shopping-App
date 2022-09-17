@@ -112,7 +112,7 @@ const ProductView: React.FC<IProductView> = (props) => {
               )}
               {mode == "preview" && (
                 <span style={{ marginTop: "1rem" }}>
-                  <Link href="/products">
+                  <Link href="/">
                     <span className="auth-submit__btn">Go to Listings</span>
                   </Link>
                 </span>

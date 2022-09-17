@@ -53,4 +53,12 @@ export const Query = {
 
     return cartReturn;
   },
+
+  cartCount: async (_1: any, _2: any, { session, prisma }: IContext) => {
+    const userId = session.user.id;
+
+    const cart = await prisma.cart.findMany({ where: { userId } });
+
+    return cart.length;
+  },
 };

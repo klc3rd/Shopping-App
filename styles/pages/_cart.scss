@@ -17,4 +17,17 @@
       box-shadow: 1px 1px 20px rgba($color-black, 0.1);
     }
   }
+
+  &-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    margin: 0 1rem !important;
+
+    &__btn {
+      width: 24px;
+    }
+  }
 }
