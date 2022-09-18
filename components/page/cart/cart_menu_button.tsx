@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useQuery, gql } from "@apollo/client";
 import Link from "next/link";
 
-import { useRouter } from "next/router";
+import { HomeContext } from "../home/provider";
 
 const CartMenuButton: React.FC = () => {
   const [cartCount, setCartCount] = useState<number>(0);
+
+  const homeCtx = useContext(HomeContext);
 
   const query = gql`
     query {
@@ -13,15 +15,15 @@ const CartMenuButton: React.FC = () => {
     }
   `;
 
-  const { data } = useQuery(query);
+  const { data, refetch } = useQuery(query);
 
   useEffect(() => {
+    refetch();
+
     if (data) {
       setCartCount(data.cartCount);
     }
-  }, [data]);
-
-  console.log(data);
+  }, [data, homeCtx.cartState]);
 
   return (
     <Link href="/cart">
@@ -69,8 +71,7 @@ const CartMenuButton: React.FC = () => {
             strokeWidth="32"
           />
         </svg>
-        {/* This is temporarily removed until I figure out how to force rerender it */}
-        {/* <span className="cart-menu__txt">{cartCount}</span> */}
+        <span className="cart-menu__txt">{cartCount}</span>
       </span>
     </Link>
   );

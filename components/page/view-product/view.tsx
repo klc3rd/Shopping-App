@@ -7,6 +7,9 @@ import Gallery from "./gallery";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 
+import { useContext } from "react";
+import { HomeContext } from "../home/provider";
+
 interface IProductView {
   productID: number;
   mode: string;
@@ -14,6 +17,7 @@ interface IProductView {
 
 const ProductView: React.FC<IProductView> = (props) => {
   const router = useRouter();
+  const homeCtx = useContext(HomeContext);
 
   const { productID, mode } = props;
   const formatter = new Intl.NumberFormat("en-US", {
@@ -55,6 +59,9 @@ const ProductView: React.FC<IProductView> = (props) => {
 
   const addToCart = async () => {
     await addProduct({ variables: { productID } });
+    homeCtx.updateCartState!((val) => {
+      return val + 1;
+    });
     router.push("/cart");
   };
 
