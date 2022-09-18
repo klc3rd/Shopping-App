@@ -1,4 +1,13 @@
 .cart {
+  display: flex;
+  margin-top: 5vh;
+  justify-content: center;
+
+  &-container {
+    width: 100%;
+    max-width: 160rem;
+  }
+
   &-add-btn {
     border: 0;
     padding: 0.5rem 1rem;

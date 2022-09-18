@@ -2,6 +2,7 @@ import CartProps from "../../db/serverProps/cartProps";
 import { ICartReturn } from "Cart";
 import { IUser } from "Users";
 import TransitionContainer from "../../components/page/transition";
+import CartContainer from "../../components/page/cart/cart";
 
 interface ICart {
   user: IUser;
@@ -13,7 +14,9 @@ const Cart: React.FC<ICart> = (props) => {
 
   return (
     <TransitionContainer>
-      <div></div>
+      <div className="cart">
+        <CartContainer />
+      </div>
     </TransitionContainer>
   );
 };
