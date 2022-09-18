@@ -23,7 +23,7 @@ const CartMenuButton: React.FC = () => {
     if (data) {
       setCartCount(data.cartCount);
     }
-  }, [data, homeCtx.cartState]);
+  }, [data, homeCtx.cartState, refetch]);
 
   return (
     <Link href="/cart">
