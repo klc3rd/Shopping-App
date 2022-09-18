@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.6.9",
+    "@next/bundle-analyzer": "^12.3.0",
     "@prisma/client": "^4.2.1",
     "@typegoose/auto-increment": "^1.6.0",
     "@types/bcrypt": "^5.0.0",
