@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useQuery, gql } from "@apollo/client";
 import Link from "next/link";
 
+import { useRouter } from "next/router";
+
 const CartMenuButton: React.FC = () => {
   const [cartCount, setCartCount] = useState<number>(0);
 
@@ -67,7 +69,8 @@ const CartMenuButton: React.FC = () => {
             strokeWidth="32"
           />
         </svg>
-        <span className="cart-menu__txt">{cartCount}</span>
+        {/* This is temporarily removed until I figure out how to force rerender it */}
+        {/* <span className="cart-menu__txt">{cartCount}</span> */}
       </span>
     </Link>
   );

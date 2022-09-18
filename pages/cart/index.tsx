@@ -1,7 +1,7 @@
-import CartProps from "../db/serverProps/cartProps";
+import CartProps from "../../db/serverProps/cartProps";
 import { ICartReturn } from "Cart";
 import { IUser } from "Users";
-import TransitionContainer from "../components/page/transition";
+import TransitionContainer from "../../components/page/transition";
 
 interface ICart {
   user: IUser;

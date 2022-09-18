@@ -5,7 +5,6 @@ import ReactMarkdown from "react-markdown";
 import Image from "next/image";
 import Gallery from "./gallery";
 import { useRouter } from "next/router";
-
 import { useSession } from "next-auth/react";
 
 interface IProductView {
@@ -56,7 +55,6 @@ const ProductView: React.FC<IProductView> = (props) => {
 
   const addToCart = async () => {
     await addProduct({ variables: { productID } });
-
     router.push("/cart");
   };
 
