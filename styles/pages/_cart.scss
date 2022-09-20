@@ -4,8 +4,12 @@
   justify-content: center;
 
   &-container {
+    display: flex;
+    flex-direction: column;
     width: 100%;
     max-width: 160rem;
+    align-items: center;
+    gap: 1rem;
   }
 
   &-add-btn {
@@ -37,6 +41,24 @@
 
     &__btn {
       width: 24px;
+    }
+  }
+
+  &-item {
+    display: grid;
+    grid-template-columns: 10rem 1fr 10rem;
+    width: 98vw;
+    height: 10rem;
+    padding: 0.5rem 1rem;
+
+    &-smalltext {
+      @include font-paragraph(300);
+    }
+
+    &-name {
+      display: flex;
+      padding: 1rem;
+      align-items: center;
     }
   }
 }
