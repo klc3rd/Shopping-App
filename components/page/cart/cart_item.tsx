@@ -12,7 +12,7 @@ interface ICartItem {
   item: ICartReturn;
 }
 
-const cartItem: React.FC<ICartItem> = (props) => {
+const CartItem: React.FC<ICartItem> = (props) => {
   const { item } = props;
   const [removeState, setRemoveState] = useState<boolean>(false);
   const homeCtx = useContext(HomeContext);
@@ -67,6 +67,7 @@ const cartItem: React.FC<ICartItem> = (props) => {
           )}
           width="100%"
           height="100%"
+          alt="Product Image"
         />
       )}
       {!item.product.images[0] && (
@@ -107,4 +108,5 @@ const cartItem: React.FC<ICartItem> = (props) => {
   );
 };
 
-export default cartItem;
+CartItem.displayName = "CartItem";
+export default CartItem;

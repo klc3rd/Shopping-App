@@ -40,7 +40,7 @@ const CartContainer: React.FC = () => {
     if (data) {
       setCart(data.cart);
     }
-  }, [data, homeCtx.cartState]);
+  }, [data, homeCtx.cartState, refetch]);
 
   return (
     <div className="cart-container">
