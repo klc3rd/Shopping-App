@@ -5,6 +5,7 @@ declare module "Cart" {
       name: string;
       body?: string;
       description?: string;
+      price: number;
       images: IImage[];
     };
     quantity: number;

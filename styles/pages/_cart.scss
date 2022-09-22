@@ -7,7 +7,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 160rem;
+    max-width: 120rem;
     align-items: center;
     gap: 1rem;
   }
@@ -44,10 +44,25 @@
     }
   }
 
+  &-link {
+    cursor: pointer;
+    color: $color-primary-200;
+
+    &:hover {
+      color: $color-secondary-300;
+      text-decoration: underline;
+    }
+  }
+
+  &-remove {
+    display: block;
+    @include font-paragraph(300);
+  }
+
   &-item {
     display: grid;
-    grid-template-columns: 10rem 1fr 10rem;
-    width: 98vw;
+    grid-template-columns: 10rem 1fr 20rem 10rem;
+    width: 100%;
     height: 10rem;
     padding: 0.5rem 1rem;
 
@@ -60,5 +75,47 @@
       padding: 1rem;
       align-items: center;
     }
+  }
+
+  &-quantity {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &-remove {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &__btn {
+      cursor: pointer;
+      width: 2.4rem;
+      color: $color-primary-300;
+
+      &:hover {
+        color: $color-primary-100;
+      }
+    }
+
+    &__link {
+      @include font-paragraph(300);
+      cursor: pointer;
+      color: $color-primary-300;
+
+      &:hover {
+        color: $color-primary-100;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &-linetotal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 3rem;
   }
 }
