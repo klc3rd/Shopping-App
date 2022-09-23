@@ -6,8 +6,11 @@ interface Iid {
 }
 
 export const Query = {
-  user: async (_1: any, { id }: Iid, { prisma }: IContext) => {
+  user: async (_1: any, _2: any, { session, prisma }: IContext) => {
+    const id = session.user.id;
     const user = await prisma.user.findUnique({ where: { id: id } });
+
+    user.password = "hidden";
 
     return user;
   },

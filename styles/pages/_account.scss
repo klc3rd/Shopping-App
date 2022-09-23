@@ -1,0 +1,27 @@
+.account {
+  @include font-heading(400);
+  display: flex;
+  justify-content: center;
+
+  &-container {
+    width: 100%;
+    max-width: 100rem;
+    margin: 5vh 1vh 1vh 1vh;
+    padding: 1rem 2rem;
+    box-shadow: 3px 3px 5px rgba($color-black-300, 0.1);
+  }
+
+  &-edit {
+    display: grid;
+    margin-top: 1rem;
+    grid-template-columns: 10rem 1fr;
+  }
+
+  &-heading {
+    @include font-paragraph(200);
+    display: flex;
+    padding-right: 1rem;
+    justify-content: flex-end;
+    align-items: center;
+  }
+}
