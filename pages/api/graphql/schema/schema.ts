@@ -17,6 +17,10 @@ export const typeDefs = gql`
       password: String!
     ): UserReturn
 
+    userUpdateName(name: String!): String!
+    userUpdateUsername(username: String!): String!
+    userUpdateEmail(email: String!): String!
+
     productCreate(input: ProductInput, images: [ImageInput]): ProductReturn
 
     cartAddProduct(productID: Int!): CartAddReturn

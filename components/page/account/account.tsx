@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { useQuery, gql } from "@apollo/client";
+import { useQuery, useMutation, gql } from "@apollo/client";
 import Input from "../form/input";
 
 const AccountPage: React.FC = (props) => {
@@ -8,6 +8,7 @@ const AccountPage: React.FC = (props) => {
   const emailRef = useRef<HTMLInputElement | null>(null);
 
   const [message, setMessage] = useState<string | null>(null);
+  const [errorState, setErrorState] = useState<boolean>(false);
 
   const [name, setName] = useState<string | null>(null);
   const [username, setUsername] = useState<string | null>(null);
@@ -23,7 +24,28 @@ const AccountPage: React.FC = (props) => {
     }
   `;
 
+  const updateNameQuery = gql`
+    mutation ($name: String) {
+      userUpdateName(name: $name)
+    }
+  `;
+  const updateUsernameQuery = gql`
+    mutation ($username: String) {
+      userUpdateUsername(username: $username)
+    }
+  `;
+  const updateEmailQuery = gql`
+    mutation ($email: String) {
+      userUpdateEmail(email: $email)
+    }
+  `;
+
   const { data, refetch } = useQuery(getUser);
+  const [updateName, { data: updateNameData }] = useMutation(updateNameQuery);
+  const [updateUsername, { data: updateUsernameData }] =
+    useMutation(updateUsernameQuery);
+  const [updateEmail, { data: updateEmailData }] =
+    useMutation(updateEmailQuery);
 
   useEffect(() => {
     if (data?.user) {
@@ -52,7 +74,9 @@ const AccountPage: React.FC = (props) => {
   return (
     <div className="account-container">
       <span>Edit Account</span>
-      <span className="account-message">{message}</span>
+      <span className={`account-message ${errorState && `error`}`}>
+        {message}
+      </span>
       <div className="account-edit">
         <div className="account-heading">Name</div>
         <div>

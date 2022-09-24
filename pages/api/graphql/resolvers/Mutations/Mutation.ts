@@ -1,4 +1,9 @@
-import { userCreate } from "./Users";
+import {
+  userCreate,
+  userUpdateName,
+  userUpdateUsername,
+  userUpdateEmail,
+} from "./Users";
 import { productCreate } from "./Products";
 import {
   cartAddProduct,
@@ -12,4 +17,7 @@ export const Mutation = {
   cartAddProduct,
   cartDeleteProduct,
   cartDeleteAllOfProduct,
+  userUpdateName,
+  userUpdateUsername,
+  userUpdateEmail,
 };

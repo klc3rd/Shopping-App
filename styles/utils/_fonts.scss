@@ -40,5 +40,5 @@
 
 .error {
   @include font-paragraph(300);
-  color: $color-error;
+  color: $color-error !important;
 }
