@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useQuery, gql } from "@apollo/client";
 import Input from "../form/input";
 
@@ -6,6 +6,12 @@ const AccountPage: React.FC = (props) => {
   const nameRef = useRef<HTMLInputElement | null>(null);
   const usernameRef = useRef<HTMLInputElement | null>(null);
   const emailRef = useRef<HTMLInputElement | null>(null);
+
+  const [message, setMessage] = useState<string | null>(null);
+
+  const [name, setName] = useState<string | null>(null);
+  const [username, setUsername] = useState<string | null>(null);
+  const [email, setEmail] = useState<string | null>(null);
 
   const getUser = gql`
     query {
@@ -19,28 +25,64 @@ const AccountPage: React.FC = (props) => {
 
   const { data, refetch } = useQuery(getUser);
 
+  useEffect(() => {
+    if (data?.user) {
+      setName(data.user.name);
+      setUsername(data.user.username);
+      setEmail(data.user.email);
+    }
+  }, [data, setName, setUsername, setEmail]);
+
+  const updateHandler = () => {
+    const newName = nameRef.current!.value;
+    const newUsername = usernameRef.current!.value;
+    const newEmail = emailRef.current!.value;
+
+    /*
+     * TODO: Add update logic here
+     */
+
+    nameRef.current!.value = "";
+    usernameRef.current!.value = "";
+    emailRef.current!.value = "";
+
+    refetch();
+  };
+
   return (
     <div className="account-container">
-      Edit Account
+      <span>Edit Account</span>
+      <span className="account-message">{message}</span>
       <div className="account-edit">
         <div className="account-heading">Name</div>
         <div>
-          <Input ref={nameRef} icon="user">
-            {data?.user.name}
-          </Input>
+          {name && (
+            <Input ref={nameRef} icon="user">
+              {name}
+            </Input>
+          )}
         </div>
         <div className="account-heading">Username</div>
         <div>
-          <Input ref={usernameRef} icon="user">
-            {data?.user.username}
-          </Input>
+          {username && (
+            <Input ref={usernameRef} icon="user">
+              {username}
+            </Input>
+          )}
         </div>
         <div className="account-heading">Email</div>
         <div>
-          <Input ref={emailRef} icon="email">
-            {data?.user.email}
-          </Input>
+          {email && (
+            <Input ref={emailRef} icon="email">
+              {email}
+            </Input>
+          )}
         </div>
+      </div>
+      <div className="account-bottom">
+        <button onClick={updateHandler} className="auth-submit__btn">
+          Update User
+        </button>
       </div>
     </div>
   );
