@@ -2,6 +2,8 @@ import { useRef, useState, useEffect, useContext } from "react";
 import { useQuery, useMutation, gql } from "@apollo/client";
 import Input from "../form/input";
 
+import validator from "validator";
+
 import { HomeContext } from "../home/provider";
 
 const AccountPage: React.FC = (props) => {
@@ -68,6 +70,12 @@ const AccountPage: React.FC = (props) => {
       await updateName({ variables: { name: newName } });
     }
 
+    if (!validator.isEmail(newEmail) && newEmail) {
+      setMessage("Must enter a valid email address");
+      setErrorState(true);
+      return;
+    }
+
     /*
      * TODO: Add update logic here
      */
@@ -79,48 +87,55 @@ const AccountPage: React.FC = (props) => {
     refetch();
 
     HomeCtx.updateCartState!((val) => val + 1);
-    if (!errorState) {
+    if (!errorState && (newName || newUsername || newEmail)) {
       setMessage("User updated");
     }
   };
 
+  const clearMessages = () => {
+    setMessage(null);
+    setErrorState(false);
+  };
+
   return (
     <div className="account-container">
-      <span>Edit Account</span>
-      <span className={`account-message ${errorState && `error`}`}>
-        {message}
-      </span>
-      <div className="account-edit">
-        <div className="account-heading">Name</div>
-        <div>
-          {name && (
-            <Input ref={nameRef} icon="user">
-              {name}
-            </Input>
-          )}
+      <form onSubmit={(e) => e.preventDefault()} onChange={clearMessages}>
+        <span>Edit Account</span>
+        <span className={`account-message ${errorState && `error`}`}>
+          {message}
+        </span>
+        <div className="account-edit">
+          <div className="account-heading">Name</div>
+          <div>
+            {name && (
+              <Input ref={nameRef} icon="user">
+                {name}
+              </Input>
+            )}
+          </div>
+          <div className="account-heading">Username</div>
+          <div>
+            {username && (
+              <Input ref={usernameRef} icon="user">
+                {username}
+              </Input>
+            )}
+          </div>
+          <div className="account-heading">Email</div>
+          <div>
+            {email && (
+              <Input ref={emailRef} icon="email">
+                {email}
+              </Input>
+            )}
+          </div>
         </div>
-        <div className="account-heading">Username</div>
-        <div>
-          {username && (
-            <Input ref={usernameRef} icon="user">
-              {username}
-            </Input>
-          )}
+        <div className="account-bottom">
+          <button onClick={updateHandler} className="auth-submit__btn">
+            Update User
+          </button>
         </div>
-        <div className="account-heading">Email</div>
-        <div>
-          {email && (
-            <Input ref={emailRef} icon="email">
-              {email}
-            </Input>
-          )}
-        </div>
-      </div>
-      <div className="account-bottom">
-        <button onClick={updateHandler} className="auth-submit__btn">
-          Update User
-        </button>
-      </div>
+      </form>
     </div>
   );
 };
