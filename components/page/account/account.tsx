@@ -1,8 +1,12 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useContext } from "react";
 import { useQuery, useMutation, gql } from "@apollo/client";
 import Input from "../form/input";
 
+import { HomeContext } from "../home/provider";
+
 const AccountPage: React.FC = (props) => {
+  const HomeCtx = useContext(HomeContext);
+
   const nameRef = useRef<HTMLInputElement | null>(null);
   const usernameRef = useRef<HTMLInputElement | null>(null);
   const emailRef = useRef<HTMLInputElement | null>(null);
@@ -25,23 +29,23 @@ const AccountPage: React.FC = (props) => {
   `;
 
   const updateNameQuery = gql`
-    mutation ($name: String) {
+    mutation ($name: String!) {
       userUpdateName(name: $name)
     }
   `;
   const updateUsernameQuery = gql`
-    mutation ($username: String) {
+    mutation ($username: String!) {
       userUpdateUsername(username: $username)
     }
   `;
   const updateEmailQuery = gql`
-    mutation ($email: String) {
+    mutation ($email: String!) {
       userUpdateEmail(email: $email)
     }
   `;
 
   const { data, refetch } = useQuery(getUser);
-  const [updateName, { data: updateNameData }] = useMutation(updateNameQuery);
+  const [updateName] = useMutation(updateNameQuery);
   const [updateUsername, { data: updateUsernameData }] =
     useMutation(updateUsernameQuery);
   const [updateEmail, { data: updateEmailData }] =
@@ -55,10 +59,14 @@ const AccountPage: React.FC = (props) => {
     }
   }, [data, setName, setUsername, setEmail]);
 
-  const updateHandler = () => {
+  const updateHandler = async () => {
     const newName = nameRef.current!.value;
     const newUsername = usernameRef.current!.value;
     const newEmail = emailRef.current!.value;
+
+    if (newName) {
+      await updateName({ variables: { name: newName } });
+    }
 
     /*
      * TODO: Add update logic here
@@ -69,6 +77,11 @@ const AccountPage: React.FC = (props) => {
     emailRef.current!.value = "";
 
     refetch();
+
+    HomeCtx.updateCartState!((val) => val + 1);
+    if (!errorState) {
+      setMessage("User updated");
+    }
   };
 
   return (

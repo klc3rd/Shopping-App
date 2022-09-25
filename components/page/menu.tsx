@@ -1,20 +1,40 @@
+import { useEffect, useState, useContext } from "react";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
-
+import { HomeContext } from "./home/provider";
 import { useRouter } from "next/router";
 
 import CartButton from "./cart/cart_menu_button";
 
+import { useQuery, gql } from "@apollo/client";
+
 const Menu: React.FC = () => {
+  const [name, setName] = useState<string | null>(null);
   const router = useRouter();
   const { data: session } = useSession();
 
+  const HomeCtx = useContext(HomeContext);
+
+  const nameQuery = gql`
+    query {
+      user {
+        name
+      }
+    }
+  `;
+
+  const { data } = useQuery(nameQuery);
+
+  useEffect(() => {
+    if (data) {
+      setName(data.user.name);
+    }
+  }, [data, HomeCtx.cartState]);
+
   return (
     <nav className="menu">
-      {session?.user && (
-        <span className="welcome">Welcome, {session.user.name}</span>
-      )}
+      {name && <span className="welcome">Welcome, {name}</span>}
 
       <div className="menu-box">
         <Link href="/">
