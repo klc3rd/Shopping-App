@@ -1,5 +1,6 @@
 import { IContext } from "graph";
-import { createUser, login } from "../../../../../db/users";
+import { createUser } from "../../../../../db/users";
+import bcrypt from "bcrypt";
 
 import { IUser } from "Users";
 
@@ -63,4 +64,24 @@ export const userUpdateEmail = async (
   await prisma.user.update({ data: { email }, where: { id } });
 
   return "Email updated";
+};
+
+export const userUpdatePassword = async (
+  _: any,
+  { password }: { password: string },
+  { prisma, session }: IContext
+) => {
+  const hash = await bcrypt.hash(password, 10);
+  if (!session) {
+    return "You are not logged in!";
+  }
+
+  const id = session.user.id;
+
+  await prisma.user.update({
+    data: { password: hash },
+    where: { id },
+  });
+
+  return "Password updated";
 };

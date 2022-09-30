@@ -20,6 +20,7 @@ export const typeDefs = gql`
     userUpdateName(name: String!): String!
     userUpdateUsername(username: String!): String!
     userUpdateEmail(email: String!): String!
+    userUpdatePassword(password: String!): String!
 
     productCreate(input: ProductInput, images: [ImageInput]): ProductReturn
 

@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { useMutation, gql } from "@apollo/client";
 import AccountContainer from "./container";
 import Input from "../form/input";
 import validator from "validator";
@@ -7,25 +8,40 @@ const ChangePassword: React.FC = () => {
   const passwordRef = useRef<HTMLInputElement | null>(null);
   const passwordConfirmRef = useRef<HTMLInputElement | null>(null);
 
-  const [error, setError] = useState<string | null>(null);
+  const [message, setMessage] = useState<string | null>(null);
+  const [errorState, setErrorState] = useState<boolean>(false);
+
+  const query = gql`
+    mutation ($password: String!) {
+      userUpdatePassword(password: $password)
+    }
+  `;
+
+  const [updatePassword] = useMutation(query);
 
   const changePasswordHandler = () => {
     const newPassword = passwordRef.current!.value;
     const confirmPassword = passwordConfirmRef.current!.value;
 
     if (!validator.isLength(newPassword, { min: 8 })) {
-      setError("Password must be at least 8 characters");
+      setMessage("Password must be at least 8 characters");
+      setErrorState(true);
       return;
     }
 
     if (newPassword !== confirmPassword) {
-      setError("Password and password confirmation must match");
+      setMessage("Password and password confirmation must match");
+      setErrorState(true);
       return;
     }
 
-    /*
-     * TODO: Add password change functionality
-     */
+    updatePassword({ variables: { password: newPassword } });
+    setMessage("Password has been updated");
+  };
+
+  const clearErrors = () => {
+    setErrorState(false);
+    setMessage(null);
   };
 
   return (
@@ -33,14 +49,13 @@ const ChangePassword: React.FC = () => {
       <div>
         <div>
           Change Password
-          {error && <span className="account-message error">{error}</span>}
+          {message && (
+            <span className={`account-message ${errorState && `error`}`}>
+              {message}
+            </span>
+          )}
         </div>
-        <form
-          onSubmit={(e) => e.preventDefault()}
-          onChange={() => {
-            setError(null);
-          }}
-        >
+        <form onSubmit={(e) => e.preventDefault()} onChange={clearErrors}>
           <Input inputType="password" icon="lock" ref={passwordRef}>
             New Password
           </Input>

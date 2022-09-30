@@ -3,6 +3,7 @@ import {
   userUpdateName,
   userUpdateUsername,
   userUpdateEmail,
+  userUpdatePassword,
 } from "./Users";
 import { productCreate } from "./Products";
 import {
@@ -20,4 +21,5 @@ export const Mutation = {
   userUpdateName,
   userUpdateUsername,
   userUpdateEmail,
+  userUpdatePassword,
 };
