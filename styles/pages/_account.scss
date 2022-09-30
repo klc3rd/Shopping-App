@@ -3,9 +3,30 @@
   display: flex;
   justify-content: center;
 
+  &-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.75rem;
+
+    &__link {
+      @include font-paragraph(300);
+      color: $color-primary-100;
+      cursor: pointer;
+
+      &:hover {
+        color: $color-secondary-200;
+        text-decoration: underline;
+      }
+    }
+  }
+
   &-container {
     width: 100%;
-    max-width: 100rem;
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+    max-width: 120rem;
     margin: 5vh 1vh 1vh 1vh;
     padding: 1rem 2rem;
     box-shadow: 3px 3px 5px rgba($color-black-300, 0.1);
