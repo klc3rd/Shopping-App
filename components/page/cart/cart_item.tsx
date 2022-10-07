@@ -55,7 +55,7 @@ const CartItem: React.FC<ICartItem> = (props) => {
   };
 
   return (
-    <div className="cart-item">
+    <>
       {item.product.images[0] && (
         <Image
           src={path.join(
@@ -104,7 +104,7 @@ const CartItem: React.FC<ICartItem> = (props) => {
           {formatter.format(item.quantity * item.product.price)}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

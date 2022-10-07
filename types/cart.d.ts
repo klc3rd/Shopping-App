@@ -10,4 +10,9 @@ declare module "Cart" {
     };
     quantity: number;
   }
+  export interface ICartLine {
+    id: number;
+    product: number;
+    userId: number;
+  }
 }

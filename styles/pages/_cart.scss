@@ -31,6 +31,22 @@
     }
   }
 
+  &-total {
+    &-left {
+      @include font-paragraph(200);
+      color: $color-gray-400;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+    &-right {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: 1.5rem;
+    }
+  }
+
   &-menu {
     display: flex;
     align-items: center;
@@ -75,12 +91,20 @@
       padding: 1rem;
       align-items: center;
     }
+
+    &-checkout {
+      grid-column: 3;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-start;
+    }
   }
 
   &-quantity {
     display: flex;
     justify-content: center;
     align-items: center;
+    grid-column: 3 / -1;
     gap: 1rem;
   }
 
@@ -117,5 +141,18 @@
     justify-content: center;
     align-items: center;
     margin-left: 3rem;
+  }
+}
+
+.checkout {
+  display: flex;
+  width: 100%;
+  padding-top: 10vh;
+  justify-content: center;
+
+  &-container {
+    width: 100%;
+    max-width: 120rem;
+    box-shadow: 1px 1px 20px rgba($color-black, 0.1);
   }
 }

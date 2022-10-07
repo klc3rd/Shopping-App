@@ -1,5 +1,6 @@
 import { IContext } from "graph";
 import { getCartItems } from "../../../../db/cart";
+import { ICartLine } from "Cart";
 
 interface Iid {
   id: number;
@@ -63,5 +64,25 @@ export const Query = {
     const cart = await prisma.cart.findMany({ where: { userId } });
 
     return cart.length;
+  },
+
+  cartTotal: async (_1: any, _2: any, { session, prisma }: IContext) => {
+    const userId = session.user.id;
+
+    const cart = await prisma.cart.findMany({ where: { userId } });
+
+    let total: Number = 0.0;
+
+    await Promise.all(
+      cart.map(async (cartItem: ICartLine) => {
+        const product = await prisma.product.findUnique({
+          where: { id: cartItem.product },
+        });
+
+        total = total + product.price;
+      })
+    );
+
+    return total;
   },
 };

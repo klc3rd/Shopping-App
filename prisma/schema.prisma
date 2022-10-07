@@ -52,3 +52,20 @@ model Cart {
   product Int
   userId  Int
 }
+
+model Orders {
+  id       Int    @id @default(autoincrement())
+  sellerId Int
+  buyerId  Int
+  items    Int[]
+  total    Float
+  address1 String
+  address2 String
+  city     String
+  state    String
+  zip      Int
+  ccNumber Int
+  expMonth Int
+  expYear  Int
+  cvv      Int
+}

@@ -7,6 +7,7 @@ export const typeDefs = gql`
     products: [Product]
     cart: [CartReturn]
     cartCount: Int
+    cartTotal: Float
   }
 
   type Mutation {
@@ -27,6 +28,8 @@ export const typeDefs = gql`
     cartAddProduct(productID: Int!): CartAddReturn
     cartDeleteProduct(productID: Int!): CartAddReturn
     cartDeleteAllOfProduct(productID: Int!): CartAddReturn
+
+    orderCreate(order: OrderInput!): OrderReturn
   }
 
   input ProductInput {
@@ -43,6 +46,22 @@ export const typeDefs = gql`
     id: Int
     filename: String!
     folder: String!
+  }
+
+  input OrderInput {
+    sellerId: Int!
+    buyerId: Int!
+    items: [Int]
+    total: Float
+    address1: String!
+    address2: String
+    city: String!
+    state: String!
+    zip: Int!
+    ccNumber: Int!
+    expMonth: Int!
+    expYear: Int!
+    cvv: Int!
   }
 
   type UserReturn {
@@ -91,5 +110,21 @@ export const typeDefs = gql`
     filename: String!
     folder: String!
     productID: Int
+  }
+
+  type OrderReturn {
+    sellerId: Int!
+    buyerId: Int!
+    items: [Product]
+    total: Float
+    address1: String!
+    address2: String
+    city: String!
+    state: String!
+    zip: Int!
+    ccNumber: Int!
+    expMonth: Int!
+    expYear: Int!
+    cvv: Int!
   }
 `;
