@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Orders" ALTER COLUMN "ccNumber" SET DATA TYPE BIGINT;

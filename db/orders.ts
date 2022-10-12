@@ -1,6 +1,8 @@
 import { IOrders } from "Orders";
 import { IContext } from "graph";
 
-const createOrder = (input: IOrders, { prisma }: IContext) => {
-  // Add order creation logic here
+export const createOrder = async (input: IOrders, { prisma }: IContext) => {
+  const result = await prisma.orders.create({ data: input });
+
+  return result;
 };

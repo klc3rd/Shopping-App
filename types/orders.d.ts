@@ -1,6 +1,6 @@
 declare module "Orders" {
   export interface IOrders {
-    id: number;
+    id?: number;
     sellerId: number;
     buyerId: number;
     items?: number[];

@@ -64,7 +64,7 @@ model Orders {
   city     String
   state    String
   zip      Int
-  ccNumber Int
+  ccNumber BigInt
   expMonth Int
   expYear  Int
   cvv      Int
