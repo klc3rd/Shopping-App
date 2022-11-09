@@ -147,12 +147,30 @@
 .checkout {
   display: flex;
   width: 100%;
-  padding-top: 10vh;
+  padding-top: 5vh;
   justify-content: center;
 
   &-container {
     width: 100%;
+    padding: 1rem;
     max-width: 120rem;
-    box-shadow: 1px 1px 20px rgba($color-black, 0.1);
+    // box-shadow: 1px 1px 20px rgba($color-black, 0.1);
+
+    &__address {
+      display: grid;
+      grid-template-columns: 1fr 7fr;
+
+      &-left {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin-right: 2rem;
+      }
+    }
+
+    &__bottom {
+      display: flex;
+      justify-content: flex-end;
+    }
   }
 }
